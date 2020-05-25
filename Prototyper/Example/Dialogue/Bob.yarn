@@ -1,0 +1,49 @@
+title: Bob.Hello
+---
+<<if visited("Bob.Hello") is false>>
+    <<set $key to false>>
+    Bob: Boo hooo....
+    Player: Hey, what's wrong?
+    Bob: My little girl, Delores...
+    Bob: She's LOST!!
+    Player: Oh I'm sure we can find her!
+<<else>>
+    Bob: Have you found my Delores?
+<<endif>>
+
+<<if $foundchild is false>>
+    [[Bob.Quest]]
+<<else>>
+    [[Bob.Thankyou]]
+<<endif>>
+===
+
+title: Bob.Quest
+---
+Bob: She was playing in the trees this morning..
+[[Who was?? | Bob.ExplainDelores]]
+[[Don't worry, I'll find her | Bob.Exit]]
+===
+
+title: Bob.ExplainDelores
+---
+Bob: Delores. My daughter! She has golden blonde hair...
+Bob: *sob*
+Player: Yes, of course.
+[[Bob.Quest]]
+===
+
+title: Bob.Exit
+---
+Bob: If you find her, come see me - I'll give you a reward!
+===
+
+title: Bob.Thankyou
+---
+Bob: You! You found my daughter!
+Bob: How can I ever thank you?
+Player: Some say gold is a welcome way of...
+Bob: I know! I have a key. I don't know what good it will do, but it's yours!
+<<set $key to true>>
+<<call message("You recieve the Barn Key.")>>
+===

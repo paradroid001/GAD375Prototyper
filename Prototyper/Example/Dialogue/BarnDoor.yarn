@@ -1,0 +1,12 @@
+title: BarnDoor
+---
+<<if $key is true>>
+    <<show Barn edward>>
+    <<animate Barn open>>
+    <<disable Barn interactable>>
+    <<disable Barn dialogue>>
+<<else>>
+    Player: It's locked.
+    Player: I need the key.
+<<endif>>
+===

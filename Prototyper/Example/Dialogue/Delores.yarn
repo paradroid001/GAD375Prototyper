@@ -1,0 +1,46 @@
+title: Delores.Hello
+---
+<<if visited("Delores.Hello") is false>>
+    <<set $tellfather to false>>
+    <<set $smokecan to false>>
+    Delores: Hello! Isn't it a nice day?
+    Player: It is! Are you Delores?
+    Delores: Yes, I am! And I am playing in the forest!
+<<else>>
+    Delores: Hello again!
+<<endif>>
+<<if $foundchild is false>>
+    [[Your father is looking for you! | Delores.Father]]
+    [[Have Fun! | Delores.Exit]]
+<<else>>
+    Delores: Thank you for finding me!
+<<endif>>
+===
+
+title: Delores.Father
+---
+Delores: Father is looking for me?!
+Delores: Oh no, the time really has gotten late!
+Delores: I'd better get back, he'll probably be crying...
+Delores: ...
+Delores: He's always crying.
+Player: He's crying.
+Delores: Well, thanks for telling me.
+<<set $tellfather to true>>
+[[Delores.Exit]]
+===
+
+title: Delores.Exit
+---
+<<if $tellfather is false>>
+    Delores: Bye! *sings*
+<<else>>
+    <<set $foundchild to true>>
+    Delores: Hey, you know what really wards off bees?
+    Delores: A big ol' can of smoke! Here, have mine!
+    <<set $smokecan to true>>
+    <<call message("You recieved Smoke Can")>>
+    Delores: Ok, time I was going!
+    <<move DeloresParent back_to_bob>>
+<<endif>>
+===

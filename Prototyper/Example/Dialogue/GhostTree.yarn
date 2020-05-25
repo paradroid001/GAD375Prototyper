@@ -1,0 +1,59 @@
+title: GhostTree.Intro
+---
+<<if $axe is true>>
+    <<set $treechopped to false>>
+    Ghost Tree: So. You have come to chop me down. 
+    Player: Yep.
+    Ghost Tree: Then mark my words, my wrath buzzes fierce!
+    [[GhostTree.Options]]
+<<else>>
+    Ghost Tree: *the sound of wind in the leaves*
+<<endif>>
+===
+
+title: GhostTree.Options
+---
+    [[Why do you haunt this forest? | GhostTree.Story]]
+    [[Chop! | GhostTree.Chop]]
+    [[This is stupid... | GhostTree.Exit]]
+===
+
+title: GhostTree.Chop
+---
+Player: You swing your axe and .... CHOP!
+<<set $chops to $chops + 1>>
+<<if $chops == 3 >>
+    Ghost Tree: You...have...chopped...me!
+    <<set $treechopped to true>>
+    <<show DeloresParent delores>>
+<<else>>
+    <<if $chops == 2>>
+        Ghost Tree: I feel, weak. What is this trickery?
+    <<else>>
+        <<if $chops == 1>>
+            Ghost Tree: Oh that tickles! You'll have to do better than that!
+        <<endif>>
+    <<endif>>
+<<endif>>
+
+<<if $treechopped>>
+    <<material GhostTree restored>>
+    <<hide GhostTree self>>
+<<else>>
+    [[GhostTree.Options]]
+<<endif>>
+===
+
+title: GhostTree.Story
+---
+Ghost Tree: Long ago, when the evil Lord Kelthor ruled the realm...
+Ghost Tree: ...
+Ghost Tree: Oh, who am I kidding, we're both bored.
+Ghost Tree: Just get on with it! 
+[[GhostTree.Options]]
+===
+
+title: GhostTree.Exit
+---
+    Ghost Tree: Yes, run away little one!
+===

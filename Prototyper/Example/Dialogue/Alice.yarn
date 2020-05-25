@@ -1,0 +1,69 @@
+title: Alice.Hello
+---
+<<if visited("Alice.Hello") is false>>
+    <<set $package to false>>
+    <<set $delivered to false>>
+    Alice: Hello there, I'm Alice!
+    Player: Hi.
+    Alice: You're probably wondering what you're supposed to do!
+    Player: I sure am!
+<<else>>
+    Alice: Hi again!
+<<endif>>
+
+<<if $delivered is false>>
+    [[Alice.Quest]]
+<<else>>
+    [[Alice.Congratulations]]
+<<endif>>
+===
+
+title: Alice.Quest
+---
+<<if $package is false>>
+    Alice: What I need you to do is take this package to Edward.
+    <<set $package to true>>
+    <<call message("You recieve the package.")>>
+    [[Who is Edward? | Alice.ExplainEdward]]
+<<else>>
+    Alice: Have you delivered my package yet?
+    [[How do I find Edward, again? | Alice.LocationEdward]]
+    [[What do I do when I'm finished? | Alice.ExplainEnd]]
+<<endif>>
+[[I understand, thanks. | Alice.Exit]]
+===
+
+title: Alice.ExplainEdward
+---
+    Alice: Edward is a giant who lives in a barn!
+    Alice: He really needs that package!
+    [[Alice.Quest]]
+===
+
+title: Alice.LocationEdward
+---
+    Alice: Well, Edward is in the barn. The barn is red.
+    Alice: It's kind of big because Edward is a giant!
+    Alice: It's through the forest and over the river!
+    Player: Great, that's incredibly specific, thank you.
+    Alice: Welcome!
+    [[Alice.Quest]]
+===
+
+title: Alice.ExplainEnd
+---
+    Alice: Just come back and talk to me!
+    [[Alice.Quest]]
+===
+
+title: Alice.Exit
+---
+    Alice: Good luck!
+===
+
+title: Alice.Congratulations
+---
+    Alice: You did it! Your quest is over!
+    Alice: Congratulations, you win!
+    Player: Hooray.
+===

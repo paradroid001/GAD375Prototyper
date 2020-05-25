@@ -1,0 +1,9 @@
+title: Checkpoint
+---
+<<if visited("Checkpoint") is false>>
+    Player: Behind me, I hear...
+    <<show Checkpoint hive>>
+    <<sound Hive bees>>
+    Player: Bees!
+<<endif>>
+===

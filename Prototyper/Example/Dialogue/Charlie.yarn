@@ -1,0 +1,36 @@
+title: Charlie.Hello
+---
+<<if visited("Charlie.Hello") is false>>
+    <<set $treechopped to false>>
+    Charlie: Howdy.
+    Player: Um. Hi.
+    [[Charlie.Quest]]
+<<else>>
+    <<if $treechopped is true>>
+        Charlie: With that ghost tree gone, my work here is done.
+        Charlie: Goodbye, sweet forest...
+        Charlie: *takes one last wistful look around*
+        <<hide Charlie self>> 
+    <<else>>
+        Charlie: Are we going to do this thing or what?
+        [[Charlie.Quest]]
+    <<endif>>
+<<endif>>
+===
+
+title: Charlie.Quest
+---
+<<if visited("Charlie.Quest") is false>>
+    Charlie: This old ghost tree has been haunting this forest for years!
+    Charlie: It has aged all the trees around us!
+    Player: It's also blocking the path.
+    Charlie: That it is! It's got to go!
+    Charlie: Let's chop this evil dark tree down!
+    Charlie: And by that I mean you! You chop it down!
+    <<set $axe to true>>
+    <<call message("You recieved Charlie's Axe.")>>
+    <<set $chops to 0>>
+<<else>>
+    Charlie: Off you go! Chop the evil dark tree dowm!
+<<endif>>
+===

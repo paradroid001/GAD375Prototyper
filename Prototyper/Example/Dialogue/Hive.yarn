@@ -1,0 +1,19 @@
+title: Hive
+---
+<<if $smokecan is true>>
+    <<hide Hive self>>
+<<else>>
+    <<respawn Player>>
+<<endif>>
+===
+
+title: Hive.Appear
+---
+<<if visited("Hive.Appear") is false>>
+Player: Behind me, I hear...
+<<show Hive hive>>
+<<sound Hive bees>>
+Player: Bees!
+<<endif>>
+===
+
