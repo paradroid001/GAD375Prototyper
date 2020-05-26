@@ -98,7 +98,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 1028
+  m_textAlignment: 260
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -442,6 +442,7 @@ GameObject:
   - component: {fileID: 400037071609041067}
   - component: {fileID: 400037071609041066}
   - component: {fileID: 400037071609041068}
+  - component: {fileID: 2056432176}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -491,6 +492,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 6335855411551648362}
+--- !u!114 &2056432176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400037071609041065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f175369d356af447926bca90a746a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusMessages: {fileID: 195901696}
 --- !u!1 &1307001613174276984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,7 +1788,7 @@ MonoBehaviour:
   onNodeComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 400037071609041068}
         m_MethodName: NodeComplete
         m_Mode: 0
         m_Arguments:
@@ -1912,7 +1926,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610c541718d694070a21327d1ae62e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultVariables: []
+  defaultVariables:
+  - name: key
+    value: false
+    type: 2
+  - name: package
+    value: true
+    type: 2
+  - name: delivered
+    value: false
+    type: 2
+  - name: foundchild
+    value: false
+    type: 2
+  - name: treechopped
+    value: false
+    type: 2
+  - name: axe
+    value: false
+    type: 2
   debugTextView: {fileID: 400037070279019461}
 --- !u!1 &6335855412086139022
 GameObject:
