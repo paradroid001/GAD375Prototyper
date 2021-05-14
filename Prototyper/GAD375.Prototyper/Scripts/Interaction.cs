@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Yarn.Unity.Example;
+//using Yarn.Unity.Example;
 using Yarn.Unity;
 using GAD375.Prototyper;
 
@@ -17,7 +17,7 @@ namespace GAD375.Prototyper
 
         void Awake()
         {
-            controller = GetComponent<SimpleCharacterController>();
+            //controller = GetComponent<SimpleCharacterController>();
             dialoguerunner = FindObjectOfType<DialogueRunner>();
             dialogueui = FindObjectOfType<DialogueUI>();
         }
@@ -73,12 +73,12 @@ namespace GAD375.Prototyper
         public void FinishedDialogue()//string s)
         {
             Debug.Log("Finished dialogue "); // + s);
-            controller.EnableFPSControls(true);
+            //controller.EnableFPSControls(true);
         }
         public void StartedDialogue()
         {
             Debug.Log("Started Dialogue");
-            controller.EnableFPSControls(false);
+            //controller.EnableFPSControls(false);
         }
     }
 }

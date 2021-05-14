@@ -12,7 +12,7 @@ public class Dialogue : MonoBehaviour
     [Header("Optional")]
     public YarnProgram dialogueScript;
 
-    void Start()
+    public virtual void Start()
     {
         if (dialogueScript != null)
         {
