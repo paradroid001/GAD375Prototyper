@@ -43,13 +43,47 @@ namespace GAD375.Prototyper
             }
         }
 
+        /*
+        public void TeleportObject(GameObject mover, GameObject g, string posname)
+        {
+            //Make pos so we don't overwrite destination on bad lookups.
+            Transform pos;
+            if ( PositionInfo.FindByName(positions, posname, out pos) )
+            {
+                destination = pos.position;
+                g.transform.position = destination;
+            }
+        }
+        */
+
+        //Object mover invoked with dynamic args (from say, collision) will move the collided object
+        //To the FIRST position
+        public void TeleportObject(GameObject mover, GameObject g, string posname = "")
+        {
+            if (posname == "")
+            {
+                if (positions != null && positions.Length > 0)
+                    string posname = positions[0].name;
+                else
+                    return;
+            }
+            //Make pos so we don't overwrite destination on bad lookups.
+            Transform pos;
+            if ( PositionInfo.FindByName(positions, posname, out pos) )
+            {
+                destination = pos.position;
+                g.transform.position = destination;
+            }
+        }
+
 
 
         /// Draw the position
         public void OnDrawGizmosSelected() 
         {
             Gizmos.color = Color.blue;
-
+            if (positions == null)
+                return;
             foreach (PositionInfo p in positions)
             {
                 if (p.data != null)
