@@ -19,18 +19,19 @@ namespace GAD375.Prototyper
             if (dialogueRunner != null)
             {
                 Debug.Log("Installing message function");
-                dialogueRunner.AddFunction("message", 1, delegate(Yarn.Value[] parameters)
+                dialogueRunner.AddFunction("message", delegate( string text)
                 {
-                    var text = parameters[0];
-                    Message(text.AsString);
+                    //var text = parameters[0];
+                    return Message(text); //.AsString);
                 });
             }
         }
 
-        void Message(string message)
+        bool Message(string message)
         {
             //Debug.Log("Appending message");
             statusMessages.text += '\n' + message;
+            return true;
         }
     }
 }

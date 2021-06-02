@@ -7,13 +7,16 @@ using Yarn.Unity;
 public class Dialogue : MonoBehaviour
 {
     public string startNode = "";
-    static List<YarnProgram> addedPrograms = new List<YarnProgram>();
+    //static List<YarnProgram> addedPrograms = new List<YarnProgram>();
 
-    [Header("Optional")]
-    public YarnProgram dialogueScript;
+    //[Header("Optional")]
+    //public YarnProgram dialogueScript;
 
     public virtual void Start()
     {
+        //No need for this anymore with the introduction of
+        //Yarn Projects?
+        /*
         if (dialogueScript != null)
         {
             DialogueRunner dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
@@ -24,6 +27,7 @@ public class Dialogue : MonoBehaviour
             }
 
         }
+        */
     }
 
     public void StartDialogue()

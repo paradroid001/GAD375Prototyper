@@ -58,12 +58,13 @@ namespace GAD375.Prototyper
 
         //Object mover invoked with dynamic args (from say, collision) will move the collided object
         //To the FIRST position
-        public void TeleportObject(GameObject mover, GameObject g, string posname = "")
+        public void TeleportObject(GameObject mover, GameObject g)//, string posname = "")
         {
+            string posname = "";
             if (posname == "")
             {
                 if (positions != null && positions.Length > 0)
-                    string posname = positions[0].name;
+                    posname = positions[0].name;
                 else
                     return;
             }
@@ -71,6 +72,7 @@ namespace GAD375.Prototyper
             Transform pos;
             if ( PositionInfo.FindByName(positions, posname, out pos) )
             {
+                Debug.Log("Teleport found named position");
                 destination = pos.position;
                 g.transform.position = destination;
             }
