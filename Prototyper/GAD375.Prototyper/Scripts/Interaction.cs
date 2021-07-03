@@ -19,14 +19,15 @@ namespace GAD375.Prototyper
         {
             //controller = GetComponent<SimpleCharacterController>();
             dialoguerunner = FindObjectOfType<DialogueRunner>();
-            dialogueui = FindObjectOfType<DialogueUI>();
+            //dialogueui = FindObjectOfType<DialogueUI>();
         }
         // Start is called before the first frame update
         void Start()
         {
             dialoguerunner.onNodeComplete.AddListener(FinishedNode);
-            dialogueui.onDialogueStart.AddListener( StartedDialogue);
-            dialogueui.onDialogueEnd.AddListener( FinishedDialogue );
+            //dialoguerunner.onDialogueStart.AddListener( StartedDialogue);
+            dialoguerunner.onNodeStart.AddListener( StartedNode);
+            dialoguerunner.onDialogueComplete.AddListener( FinishedDialogue );
         }
 
         // Update is called once per frame
@@ -74,6 +75,11 @@ namespace GAD375.Prototyper
         {
             Debug.Log("Finished dialogue "); // + s);
             //controller.EnableFPSControls(true);
+        }
+        public void StartedNode(string s)
+        {
+            Debug.Log("Started Node " +s);
+            //controller.EnableFPSControls(false);
         }
         public void StartedDialogue()
         {
