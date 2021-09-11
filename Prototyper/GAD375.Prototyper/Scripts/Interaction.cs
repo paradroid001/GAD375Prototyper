@@ -33,14 +33,21 @@ namespace GAD375.Prototyper
         // Update is called once per frame
         void Update()
         {
+#if ENABLE_LEGACY_INPUT_MANAGER || UNITY_2018
             // Detect if we want to start a conversation
             if (Input.GetKeyDown(interactKey)) 
             {
-                Interactable i = CheckForNearbyInteractable();
-                if (i != null)
-                {
-                    i.Interact(gameObject); //interact, passing ourself
-                }
+                TryInteract();
+            }
+#endif
+        }
+
+        public void TryInteract()
+        {
+            Interactable i = CheckForNearbyInteractable();
+            if (i != null)
+            {
+                i.Interact(gameObject); //interact, passing ourself
             }
         }
 

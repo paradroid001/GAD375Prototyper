@@ -21,9 +21,11 @@ namespace GAD375.Prototyper
                 Debug.Log("Installing message function");
                 dialogueRunner.AddFunction("message", delegate( string text)
                 {
-                    //var text = parameters[0];
+                //    //var text = parameters[0];
                     return Message(text); //.AsString);
                 });
+
+                //dialogueRunner.AddCommandHandler<string>("message", (string message) => Message(message) );
             }
         }
 

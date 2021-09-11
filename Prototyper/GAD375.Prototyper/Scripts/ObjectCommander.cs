@@ -12,13 +12,25 @@ namespace GAD375.Prototyper
 
         public static bool FindByName(NamedData<T>[] list, string itemname, out T result)
         {
-            bool found = false;
+            NamedData<T> item;
             result = default(T);
-            foreach(NamedData<T> item in list)
+            bool found = FindItemByName(list, itemname, out item);
+            if (found)
+            {
+                result = item.data;
+            }
+            return found;
+        }
+
+        public static bool FindItemByName<U>(NamedData<T>[] list, string itemname, out U result) where U: NamedData<T>
+        {
+            bool found = false;
+            result = null;
+            foreach(U item in list)
             {
                 if (item.name == itemname)
                 {
-                    result = item.data;
+                    result = item;
                     found = true;
                     break;
                 }
