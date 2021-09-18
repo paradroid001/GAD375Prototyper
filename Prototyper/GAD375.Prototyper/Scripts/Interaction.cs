@@ -76,21 +76,21 @@ namespace GAD375.Prototyper
 
         public void FinishedNode(string s)
         {
-            Debug.Log("Finished node: " + s);
+            //Debug.Log("Finished node: " + s);
         }
         public void FinishedDialogue()//string s)
         {
-            Debug.Log("Finished dialogue "); // + s);
+            //Debug.Log("Finished dialogue "); // + s);
             //controller.EnableFPSControls(true);
         }
         public void StartedNode(string s)
         {
-            Debug.Log("Started Node " +s);
+            //Debug.Log("Started Node " +s);
             //controller.EnableFPSControls(false);
         }
         public void StartedDialogue()
         {
-            Debug.Log("Started Dialogue");
+            //Debug.Log("Started Dialogue");
             //controller.EnableFPSControls(false);
         }
     }
