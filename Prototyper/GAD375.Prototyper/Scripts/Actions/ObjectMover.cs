@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 using Yarn.Unity;
 
 namespace GAD375.Prototyper
@@ -11,24 +13,45 @@ namespace GAD375.Prototyper
         [System.Serializable]
         public class PositionInfo : NamedData<Transform>
         {
+            public bool useExternalMover = false;
         }
-
         public float speed;
         public PositionInfo[] positions;
         public float distanceThreshold = 0.1f;
+
+        [Header("Optional external mover")]
+        public UnityEvent<Vector3> externalMover;
         Vector3 destination;
         bool moving = false;
+        bool usingExternalMover = false;
 
         [YarnCommand("move")]
         public void MoveObject(string posname)
         {
-            //Make pos so we don't overwrite destination on bad lookups.
-            Transform pos;
-            if ( PositionInfo.FindByName(positions, posname, out pos) )
+            PositionInfo posinfo;
+            if ( PositionInfo.FindItemByName(positions, posname, out posinfo) )
             {
+                destination = posinfo.data.position; //transforms position
                 moving = true;
-                destination = pos.position;
+                if (posinfo.useExternalMover)
+                {
+                    usingExternalMover = true;
+                }
+                else
+                {
+                    usingExternalMover = false;
+                }
             }
+        }
+
+        [YarnCommand("stop")]
+        public void StopObject()
+        {
+            moving = false;
+            //if (usingExternalMover)
+            //{
+                externalMover.Invoke(transform.position);
+            //}
         }
 
         [YarnCommand("teleport")]
@@ -43,9 +66,16 @@ namespace GAD375.Prototyper
             }
         }
 
-        /*
-        public void TeleportObject(GameObject mover, GameObject g, string posname)
+        //teleports an object named 'objectname' in the world.
+        [YarnCommand("teleportnamed")]
+        public void TeleportObject(string objectname, string posname)
         {
+            GameObject g = GameObject.Find(objectname);
+            if (g == null)
+            {
+                Debug.LogError("Command teleportnamed can't teleport unknown object " + objectname);
+                return; //no object existed
+            }
             //Make pos so we don't overwrite destination on bad lookups.
             Transform pos;
             if ( PositionInfo.FindByName(positions, posname, out pos) )
@@ -54,7 +84,7 @@ namespace GAD375.Prototyper
                 g.transform.position = destination;
             }
         }
-        */
+        
 
         //Object mover invoked with dynamic args (from say, collision) will move the collided object
         //To the FIRST position
@@ -106,10 +136,15 @@ namespace GAD375.Prototyper
                     OnMoveFinish();
                     moving = false;
                 }
-                else
+                else if (!usingExternalMover)
                 {
                     Vector3 movement = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
                     transform.position = movement;
+                }
+                else
+                {
+                    externalMover.Invoke(destination);
+                    Debug.Log(name + " External move: " + destination);
                 }
             }
         }
