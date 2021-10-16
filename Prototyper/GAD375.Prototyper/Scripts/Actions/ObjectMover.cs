@@ -48,6 +48,7 @@ namespace GAD375.Prototyper
         public void StopObject()
         {
             moving = false;
+            //Can't test this, because we don't know.
             //if (usingExternalMover)
             //{
                 externalMover.Invoke(transform.position);
