@@ -10,9 +10,9 @@ namespace GAD375.Prototyper
     public class Interaction : MonoBehaviour
     {
         public float interactionRadius = 1.0f;
-        private DialogueRunner dialoguerunner;
-        private DialogueUI dialogueui;
-        private SimpleCharacterController controller;
+        protected DialogueRunner dialoguerunner;
+        protected DialogueUI dialogueui;
+        protected SimpleCharacterController controller;
         public KeyCode interactKey;
 
         void Awake()
@@ -24,10 +24,12 @@ namespace GAD375.Prototyper
         // Start is called before the first frame update
         void Start()
         {
+            /*
             dialoguerunner.onNodeComplete.AddListener(FinishedNode);
-            //dialoguerunner.onDialogueStart.AddListener( StartedDialogue);
+            dialoguerunner.onDialogueStart.AddListener( StartedDialogue);
             dialoguerunner.onNodeStart.AddListener( StartedNode);
             dialoguerunner.onDialogueComplete.AddListener( FinishedDialogue );
+            */
         }
 
         // Update is called once per frame
@@ -42,7 +44,7 @@ namespace GAD375.Prototyper
 #endif
         }
 
-        public void TryInteract()
+        public virtual void TryInteract()
         {
             Interactable i = CheckForNearbyInteractable();
             if (i != null)
@@ -52,7 +54,7 @@ namespace GAD375.Prototyper
         }
 
         [YarnCommand("respawn")]
-        public void Respawn()
+        public virtual void Respawn()
         {
             Checkpoint c = GameManager.instance.currentCheckPoint;
             if (c != null)
@@ -61,7 +63,7 @@ namespace GAD375.Prototyper
             }
         }
 
-        Interactable CheckForNearbyInteractable()
+        protected virtual Interactable CheckForNearbyInteractable()
         {
             var allParticipants = new List<Interactable> (FindObjectsOfType<Interactable> ());
             var target = allParticipants.Find (delegate (Interactable p) 
@@ -74,24 +76,26 @@ namespace GAD375.Prototyper
             return (Interactable)target;
         }
 
+        /*
         public void FinishedNode(string s)
         {
-            //Debug.Log("Finished node: " + s);
+            Debug.Log("(" + name + ") Finished node: " + s);
         }
         public void FinishedDialogue()//string s)
         {
-            //Debug.Log("Finished dialogue "); // + s);
+            Debug.Log("(" + name + ") Finished dialogue "); // + s);
             //controller.EnableFPSControls(true);
         }
         public void StartedNode(string s)
         {
-            //Debug.Log("Started Node " +s);
+            Debug.Log("(" + name + ") Started Node " +s);
             //controller.EnableFPSControls(false);
         }
         public void StartedDialogue()
         {
-            //Debug.Log("Started Dialogue");
+            Debug.Log("(" + name + ") Started Dialogue");
             //controller.EnableFPSControls(false);
         }
+        */
     }
 }
