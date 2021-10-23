@@ -15,15 +15,18 @@ namespace GAD375.Prototyper
         protected SimpleCharacterController controller;
         public KeyCode interactKey;
 
-        void Awake()
+        protected virtual void Awake()
         {
-            //controller = GetComponent<SimpleCharacterController>();
-            dialoguerunner = FindObjectOfType<DialogueRunner>();
-            //dialogueui = FindObjectOfType<DialogueUI>();
+            
         }
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Start()
         {
+            //Moved getting the dialogue runner out of awake
+            //to avoid problems with this component starting and
+            //detecting singleton pretenders.
+            dialoguerunner = FindObjectOfType<DialogueRunner>();
+            
             /*
             dialoguerunner.onNodeComplete.AddListener(FinishedNode);
             dialoguerunner.onDialogueStart.AddListener( StartedDialogue);
@@ -33,7 +36,7 @@ namespace GAD375.Prototyper
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
 #if ENABLE_LEGACY_INPUT_MANAGER || UNITY_2018
             // Detect if we want to start a conversation
