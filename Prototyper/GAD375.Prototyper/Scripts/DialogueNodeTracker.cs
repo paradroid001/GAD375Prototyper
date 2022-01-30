@@ -33,6 +33,8 @@ namespace GAD375.Prototyper
         public void NodeComplete(string nodeName) {
             // Log that the node has been run.
             _visitedNodes.Add(nodeName);
+            Debug.Log("Node name " + nodeName + " is now complete.");
+            Debug.Log("Completed Set: " + _visitedNodes.ToString() ); 
         }  
 
         // Called by the Dialogue Runner to notify us that a new node
@@ -44,6 +46,46 @@ namespace GAD375.Prototyper
             var tags = new List<string>(dialogueRunner.GetTagsForNode(nodeName));
 
             Debug.Log($"Starting the execution of node {nodeName} with {tags.Count} tags.");
-        } 
+        }
+
+        [System.Serializable] class HashStrings
+        {
+            public List<string> strings;
+
+            public HashStrings()
+            {
+                strings = new List<string>();
+            }
+        }
+        public string SerializeToJSON(bool prettyPrint=false)
+        {
+            /*
+            List<string> nodes = new List<string>();
+            foreach (string item in _visitedNodes)
+            {
+                nodes.Add(item);
+            }
+            string savedata = JsonUtility.ToJson(nodes, prettyPrint);
+            */
+            HashStrings s = new HashStrings();
+            foreach (string item in _visitedNodes)
+            {
+                s.strings.Add(item);
+            }
+            string savedata = JsonUtility.ToJson(s, prettyPrint);
+            return savedata;
+        }
+        public void DeserializeFromJSON(string json)
+        {
+            //List<string> nodes = JsonUtility.FromJson<List<string>>(json);
+            HashStrings nodes = JsonUtility.FromJson<HashStrings>(json);
+            _visitedNodes.Clear(); //start from scratch
+            //_visitedNodes.UnionWith(nodes); //merge the two.
+            foreach (string node in nodes.strings)
+            {
+                _visitedNodes.Add(node);
+            }
+
+        }
     }
 }
