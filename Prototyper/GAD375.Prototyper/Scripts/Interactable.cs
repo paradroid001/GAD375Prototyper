@@ -7,6 +7,7 @@ namespace GAD375.Prototyper
 {
     public class Interactable : MonoBehaviour
     {
+        public string interactableName = "Unknown";
         [System.Serializable]
         public class Interactions : UnityEvent<GameObject>
         {
