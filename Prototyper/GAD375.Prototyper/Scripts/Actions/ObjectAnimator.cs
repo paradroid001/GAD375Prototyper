@@ -9,14 +9,16 @@ namespace GAD375.Prototyper
     public class ObjectAnimator : MonoBehaviour
     {
         [System.Serializable]
-        public class AnimationInfo : NamedData<AnimationClip>
-        {}
+        public class AnimationInfo : NamedData<AnimationClip>{}
+        
+        [SerializeField]
         private Animator animatorComponent;
         public AnimationInfo[] animations;
 
         public void Start()
         {
-            animatorComponent = GetComponent<Animator>();
+            if (animatorComponent == null)
+                animatorComponent = GetComponent<Animator>();
             //foreach (AnimationInfo animinfo in animations)
             //{
             //    animationComponent.AddClip(animinfo.data, animinfo.name);
