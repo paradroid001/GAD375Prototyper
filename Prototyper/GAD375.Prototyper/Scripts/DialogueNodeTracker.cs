@@ -33,8 +33,8 @@ namespace GAD375.Prototyper
         public void NodeComplete(string nodeName) {
             // Log that the node has been run.
             _visitedNodes.Add(nodeName);
-            Debug.Log("Node name " + nodeName + " is now complete.");
-            Debug.Log("Completed Set: " + _visitedNodes.ToString() ); 
+            //Debug.Log("Node name " + nodeName + " is now complete.");
+            //Debug.Log("Completed Set: " + _visitedNodes.ToString() ); 
         }  
 
         // Called by the Dialogue Runner to notify us that a new node
