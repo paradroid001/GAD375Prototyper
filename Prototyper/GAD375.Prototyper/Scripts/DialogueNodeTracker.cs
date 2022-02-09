@@ -45,7 +45,7 @@ namespace GAD375.Prototyper
 
             var tags = new List<string>(dialogueRunner.GetTagsForNode(nodeName));
 
-            Debug.Log($"Starting the execution of node {nodeName} with {tags.Count} tags.");
+            //Debug.Log($"Starting the execution of node {nodeName} with {tags.Count} tags.");
         }
 
         [System.Serializable] class HashStrings
@@ -79,13 +79,18 @@ namespace GAD375.Prototyper
         {
             //List<string> nodes = JsonUtility.FromJson<List<string>>(json);
             HashStrings nodes = JsonUtility.FromJson<HashStrings>(json);
-            _visitedNodes.Clear(); //start from scratch
+            Clear(); //start from scratch
             //_visitedNodes.UnionWith(nodes); //merge the two.
             foreach (string node in nodes.strings)
             {
                 _visitedNodes.Add(node);
             }
 
+        }
+
+        public void Clear()
+        {
+            _visitedNodes.Clear();
         }
     }
 }
