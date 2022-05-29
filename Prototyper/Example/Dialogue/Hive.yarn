@@ -1,4 +1,4 @@
-title: Hive
+﻿title: Hive
 ---
 <<if $smokecan is true>>
     <<hide Hive self>>
@@ -7,9 +7,9 @@ title: Hive
 <<endif>>
 ===
 
-title: Hive.Appear
+title: Hive_Appear
 ---
-<<if visited("Hive.Appear") is false>>
+<<if visited("Hive_Appear") is false>>
 Player: Behind me, I hear...
 <<show Hive hive>>
 <<sound Hive bees>>

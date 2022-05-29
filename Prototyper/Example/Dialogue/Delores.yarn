@@ -1,6 +1,6 @@
-title: Delores.Hello
+﻿title: Delores_Hello
 ---
-<<if visited("Delores.Hello") is false>>
+<<if visited("Delores_Hello") is false>>
     <<set $tellfather to false>>
     <<set $smokecan to false>>
     Delores: Hello! Isn't it a nice day?
@@ -10,14 +10,18 @@ title: Delores.Hello
     Delores: Hello again!
 <<endif>>
 <<if $foundchild is false>>
-    [[Your father is looking for you! | Delores.Father]]
-    [[Have Fun! | Delores.Exit]]
+    // Option "Your father is looking for you! " moved to the end of this node
+    // Option "Have Fun! " moved to the end of this node
 <<else>>
     Delores: Thank you for finding me!
 <<endif>>
+-> Your father is looking for you!  <<if ($foundchild is false)>>
+    <<jump Delores_Father>>
+-> Have Fun!  <<if ($foundchild is false)>>
+    <<jump Delores_Exit>>
 ===
 
-title: Delores.Father
+title: Delores_Father
 ---
 Delores: Father is looking for me?!
 Delores: Oh no, the time really has gotten late!
@@ -27,10 +31,10 @@ Delores: He's always crying.
 Player: He's crying.
 Delores: Well, thanks for telling me.
 <<set $tellfather to true>>
-[[Delores.Exit]]
+<<jump Delores_Exit>>
 ===
 
-title: Delores.Exit
+title: Delores_Exit
 ---
 <<if $tellfather is false>>
     Delores: Bye! *sings*

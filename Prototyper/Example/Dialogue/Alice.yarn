@@ -1,6 +1,6 @@
-title: Alice.Hello
+﻿title: Alice_Hello
 ---
-<<if visited("Alice.Hello") is false>>
+<<if visited("Alice_Hello") is false>>
     <<set $package to false>>
     <<set $delivered to false>>
     Alice: Hello there, I'm Alice!
@@ -12,56 +12,64 @@ title: Alice.Hello
 <<endif>>
 
 <<if $delivered is false>>
-    [[Alice.Quest]]
+    <<jump Alice_Quest>>
 <<else>>
-    [[Alice.Congratulations]]
+    <<jump Alice_Congratulations>>
 <<endif>>
 ===
 
-title: Alice.Quest
+title: Alice_Quest
 ---
 <<if $package is false>>
     Alice: What I need you to do is take this package to Edward.
     <<set $package to true>>
     <<call message("You recieve the package.")>>
-    [[Who is Edward? | Alice.ExplainEdward]]
+    // Option "Who is Edward? " moved to the end of this node
 <<else>>
     Alice: Have you delivered my package yet?
-    [[How do I find Edward, again? | Alice.LocationEdward]]
-    [[What do I do when I'm finished? | Alice.ExplainEnd]]
+    // Option "How do I find Edward, again? " moved to the end of this node
+    // Option "What do I do when I'm finished? " moved to the end of this node
 <<endif>>
-[[I understand, thanks. | Alice.Exit]]
+// Option "I understand, thanks. " moved to the end of this node
+-> Who is Edward?  <<if ($package is false)>>
+    <<jump Alice_ExplainEdward>>
+-> How do I find Edward, again?  <<if !($package is false)>>
+    <<jump Alice_LocationEdward>>
+-> What do I do when I'm finished?  <<if !($package is false)>>
+    <<jump Alice_ExplainEnd>>
+-> I understand, thanks. 
+    <<jump Alice_Exit>>
 ===
 
-title: Alice.ExplainEdward
+title: Alice_ExplainEdward
 ---
     Alice: Edward is a giant who lives in a barn!
     Alice: He really needs that package!
-    [[Alice.Quest]]
+    <<jump Alice_Quest>>
 ===
 
-title: Alice.LocationEdward
+title: Alice_LocationEdward
 ---
     Alice: Well, Edward is in the barn. The barn is red.
     Alice: It's kind of big because Edward is a giant!
     Alice: It's through the forest and over the river!
     Player: Great, that's incredibly specific, thank you.
     Alice: Welcome!
-    [[Alice.Quest]]
+    <<jump Alice_Quest>>
 ===
 
-title: Alice.ExplainEnd
+title: Alice_ExplainEnd
 ---
     Alice: Just come back and talk to me!
-    [[Alice.Quest]]
+    <<jump Alice_Quest>>
 ===
 
-title: Alice.Exit
+title: Alice_Exit
 ---
     Alice: Good luck!
 ===
 
-title: Alice.Congratulations
+title: Alice_Congratulations
 ---
     Alice: You did it! Your quest is over!
     Alice: Congratulations, you win!

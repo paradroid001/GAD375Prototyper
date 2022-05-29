@@ -1,6 +1,6 @@
-title: Bob.Hello
+﻿title: Bob_Hello
 ---
-<<if visited("Bob.Hello") is false>>
+<<if visited("Bob_Hello") is false>>
     <<set $key to false>>
     Bob: Boo hooo....
     Player: Hey, what's wrong?
@@ -12,33 +12,37 @@ title: Bob.Hello
 <<endif>>
 
 <<if $foundchild is false>>
-    [[Bob.Quest]]
+    <<jump Bob_Quest>>
 <<else>>
-    [[Bob.Thankyou]]
+    <<jump Bob_Thankyou>>
 <<endif>>
 ===
 
-title: Bob.Quest
+title: Bob_Quest
 ---
 Bob: She was playing in the trees this morning..
-[[Who was?? | Bob.ExplainDelores]]
-[[Don't worry, I'll find her | Bob.Exit]]
+// Option "Who was?? " moved to the end of this node
+// Option "Don't worry, I'll find her " moved to the end of this node
+-> Who was?? 
+    <<jump Bob_ExplainDelores>>
+-> Don't worry, I'll find her 
+    <<jump Bob_Exit>>
 ===
 
-title: Bob.ExplainDelores
+title: Bob_ExplainDelores
 ---
 Bob: Delores. My daughter! She has golden blonde hair...
 Bob: *sob*
 Player: Yes, of course.
-[[Bob.Quest]]
+<<jump Bob_Quest>>
 ===
 
-title: Bob.Exit
+title: Bob_Exit
 ---
 Bob: If you find her, come see me - I'll give you a reward!
 ===
 
-title: Bob.Thankyou
+title: Bob_Thankyou
 ---
 Bob: You! You found my daughter!
 Bob: How can I ever thank you?

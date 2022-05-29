@@ -11,7 +11,7 @@ namespace GAD375.Prototyper
     {
         public float interactionRadius = 1.0f;
         protected DialogueRunner dialoguerunner;
-        protected DialogueUI dialogueui;
+        //protected DialogueUI dialogueui;
         protected SimpleCharacterController controller;
         public KeyCode interactKey;
 
@@ -22,17 +22,17 @@ namespace GAD375.Prototyper
         // Start is called before the first frame update
         protected virtual void Start()
         {
+            controller = GetComponent<SimpleCharacterController>();
             //Moved getting the dialogue runner out of awake
             //to avoid problems with this component starting and
             //detecting singleton pretenders.
             dialoguerunner = FindObjectOfType<DialogueRunner>();
             
-            /*
+            
             dialoguerunner.onNodeComplete.AddListener(FinishedNode);
-            dialoguerunner.onDialogueStart.AddListener( StartedDialogue);
+            //dialoguerunner.onDialogueStart.AddListener( StartedDialogue);
             dialoguerunner.onNodeStart.AddListener( StartedNode);
             dialoguerunner.onDialogueComplete.AddListener( FinishedDialogue );
-            */
         }
 
         // Update is called once per frame
@@ -79,7 +79,7 @@ namespace GAD375.Prototyper
             return (Interactable)target;
         }
 
-        /*
+        
         public void FinishedNode(string s)
         {
             Debug.Log("(" + name + ") Finished node: " + s);
@@ -87,18 +87,18 @@ namespace GAD375.Prototyper
         public void FinishedDialogue()//string s)
         {
             Debug.Log("(" + name + ") Finished dialogue "); // + s);
-            //controller.EnableFPSControls(true);
+            controller.EnableFPSControls(true);
         }
         public void StartedNode(string s)
         {
             Debug.Log("(" + name + ") Started Node " +s);
-            //controller.EnableFPSControls(false);
+            controller.EnableFPSControls(false);
         }
         public void StartedDialogue()
         {
             Debug.Log("(" + name + ") Started Dialogue");
             //controller.EnableFPSControls(false);
         }
-        */
+        
     }
 }

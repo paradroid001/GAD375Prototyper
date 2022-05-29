@@ -8,34 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
-  baseLanguageID: en-AU
-  stringIDs:
-  - John-John.Main-0
-  - John-John.Main-1
-  - John-John.Main-2
-  - John-John.Main-3
-  - John-John.Main-4
-  - John-John.Main-5
-  - John-John.Exit-6
-  - John-John.Health-7
-  - John-John.OpenDoor-8
-  - John-John.OpenDoor-9
-  - John-John.GiveGold-10
-  - John-John.Damage-11
-  compilationStatus: 1
-  isSuccesfullyCompiled: 1
-  compilationErrorMessage: "Error on line 6 at position 26:\nmismatched input '}'
-    expecting '('\r\n    John: I have ${health} health\r\r\n                        
-    ^\n\nTokens:\n1:0 ID \"title\"\n1:5 HEADER_DELIMITER \": \"\n1:7 REST_OF_LINE
-    \"John\"\n2:0 HEADER_NEWLINE \"\r\n\"\n2:0 '---' \"---\"\n3:0 COMMAND_START \"<<\"\n3:2
-    COMMAND_SET \"set \"\n3:6 VAR_ID \"$health\"\n3:14 OPERATOR_ASSIGNMENT \"to\"\n3:17
-    NUMBER \"10\"\n3:19 EXPRESSION_COMMAND_END \">>\"\n4:0 COMMAND_START \"<<\"\n4:2
-    COMMAND_IF \"if \"\n4:5 FUNC_ID \"visited\"\n4:12 '(' \"(\"\n4:13 STRING \"\"John\"\"\n4:19
-    ')' \")\"\n4:21 OPERATOR_LOGICAL_EQUALS \"is\"\n4:24 'false' \"false\"\n4:29
-    EXPRESSION_COMMAND_END \">>\"\n5:4 INDENT \"    \"\n5:4 TEXT \"Player: How much
-    health do you have?\"\n6:4 TEXT_NEWLINE \"  \"\n6:4 TEXT \"John: I have $\"\n6:18
-    TEXT_EXPRESSION_START \"{\"\n6:19 FUNC_ID \"health\"\n6:25 '}' \"}\"\n6:26 TEXT
-    \" health\""
-  baseLanguage: {fileID: 7128917941130120860, guid: 4fa43d681cdb51a44b7ca168ff5338d5,
-    type: 3}
-  localizations: []
+  LastImportHadImplicitStringIDs: 1
+  LastImportHadAnyStrings: 1
+  isSuccessfullyParsed: 1
+  parseErrorMessages: []

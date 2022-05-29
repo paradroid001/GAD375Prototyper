@@ -1,10 +1,10 @@
-title: Charlie.Hello
+﻿title: Charlie_Hello
 ---
-<<if visited("Charlie.Hello") is false>>
+<<if visited("Charlie_Hello") is false>>
     <<set $treechopped to false>>
     Charlie: Howdy.
     Player: Um. Hi.
-    [[Charlie.Quest]]
+    <<jump Charlie_Quest>>
 <<else>>
     <<if $treechopped is true>>
         Charlie: With that ghost tree gone, my work here is done.
@@ -13,14 +13,14 @@ title: Charlie.Hello
         <<hide Charlie self>> 
     <<else>>
         Charlie: Are we going to do this thing or what?
-        [[Charlie.Quest]]
+        <<jump Charlie_Quest>>
     <<endif>>
 <<endif>>
 ===
 
-title: Charlie.Quest
+title: Charlie_Quest
 ---
-<<if visited("Charlie.Quest") is false>>
+<<if visited("Charlie_Quest") is false>>
     Charlie: This old ghost tree has been haunting this forest for years!
     Charlie: It has aged all the trees around us!
     Player: It's also blocking the path.

@@ -1,24 +1,30 @@
-title: GhostTree.Intro
+﻿title: GhostTree_Intro
 ---
 <<if $axe is true>>
     <<set $treechopped to false>>
     Ghost Tree: So. You have come to chop me down. 
     Player: Yep.
     Ghost Tree: Then mark my words, my wrath buzzes fierce!
-    [[GhostTree.Options]]
+    <<jump GhostTree_Options>>
 <<else>>
     Ghost Tree: *the sound of wind in the leaves*
 <<endif>>
 ===
 
-title: GhostTree.Options
+title: GhostTree_Options
 ---
-    [[Why do you haunt this forest? | GhostTree.Story]]
-    [[Chop! | GhostTree.Chop]]
-    [[This is stupid... | GhostTree.Exit]]
+    // Option "Why do you haunt this forest? " moved to the end of this node
+    // Option "Chop! " moved to the end of this node
+    // Option "This is stupid... " moved to the end of this node
+-> Why do you haunt this forest? 
+    <<jump GhostTree_Story>>
+-> Chop! 
+    <<jump GhostTree_Chop>>
+-> This is stupid... 
+    <<jump GhostTree_Exit>>
 ===
 
-title: GhostTree.Chop
+title: GhostTree_Chop
 ---
 Player: You swing your axe and .... CHOP!
 <<set $chops to $chops + 1>>
@@ -40,20 +46,20 @@ Player: You swing your axe and .... CHOP!
     <<material GhostTree restored>>
     <<hide GhostTree self>>
 <<else>>
-    [[GhostTree.Options]]
+    <<jump GhostTree_Options>>
 <<endif>>
 ===
 
-title: GhostTree.Story
+title: GhostTree_Story
 ---
 Ghost Tree: Long ago, when the evil Lord Kelthor ruled the realm...
 Ghost Tree: ...
 Ghost Tree: Oh, who am I kidding, we're both bored.
 Ghost Tree: Just get on with it! 
-[[GhostTree.Options]]
+<<jump GhostTree_Options>>
 ===
 
-title: GhostTree.Exit
+title: GhostTree_Exit
 ---
     Ghost Tree: Yes, run away little one!
 ===

@@ -1,6 +1,6 @@
-title: Edward.Intro
+﻿title: Edward_Intro
 ---
-<<if visited("Edward.Intro") is false>>
+<<if visited("Edward_Intro") is false>>
     Edward: Hi there.
     Player: Hey. Umm..
     Edward: What's wrong? Never seen a giant in a barn before?
@@ -11,20 +11,24 @@ Edward: What's up?
     <<if $delivered is false>>
         Player: I have a package for you. From Alice.
         Edward: Oh brilliant!
-        [[Is this an important package for you? | Edward.ExplainPackage]]
-        [[Here's your package. | Edward.DeliverPackage]]
+        // Option "Is this an important package for you? " moved to the end of this node
+        // Option "Here's your package. " moved to the end of this node
     <<endif>>
 <<else>>
     <<if $delivered is false>>
         Player: Nothing, really.
         Player: Nice to meet you, though.
     <<else>>
-        [[Edward.Thanks]]
+        <<jump Edward_Thanks>>
     <<endif>>
 <<endif>>
+-> Is this an important package for you?  <<if ($package is true) && ($delivered is false)>>
+    <<jump Edward_ExplainPackage>>
+-> Here's your package.  <<if ($package is true) && ($delivered is false)>>
+    <<jump Edward_DeliverPackage>>
 ===
 
-title: Edward.ExplainPackage
+title: Edward_ExplainPackage
 ---
     Edward: I guess. It's my books.
     Edward: About how to live alone.
@@ -32,21 +36,21 @@ title: Edward.ExplainPackage
     Edward: I can't wait!
 ===
 
-title: Edward.DeliverPackage
+title: Edward_DeliverPackage
 ---
     <<set $package to false>>
     <<set $delivered to true>>
     <<call message("You give the package to Edward.")>>
-    [[Edward.ReceivePackage]]
+    <<jump Edward_ReceivePackage>>
 ===
 
-title: Edward.ReceivePackage
+title: Edward_ReceivePackage
 ---
     Edward: Finally, my books have arrived!
-    [[Edward.Thanks]]
+    <<jump Edward_Thanks>>
 ===
 
-title: Edward.Thanks
+title: Edward_Thanks
 ---
     Edward: Thanks for the package!
     Edward: You should go see Alice now.

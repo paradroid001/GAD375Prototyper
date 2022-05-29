@@ -9,34 +9,7 @@ namespace GAD375.Prototyper
     public class Dialogue : MonoBehaviour
     {
         public string startNode = "";
-        //static List<YarnProgram> addedPrograms = new List<YarnProgram>();
-
-        //[Header("Optional")]
-        //public YarnProgram dialogueScript;
-
-        public virtual void Awake()
-        {
-            
-        }
-
-        public virtual void Start()
-        {
-            //No need for this anymore with the introduction of
-            //Yarn Projects?
-            /*
-            if (dialogueScript != null)
-            {
-                DialogueRunner dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
-                if (!addedPrograms.Contains(dialogueScript))
-                {
-                    dialogueRunner.Add(dialogueScript);
-                    addedPrograms.Add(dialogueScript);
-                }
-
-            }
-            */
-        }
-
+       
         public virtual void StartDialogue()
         {
             // Kick off the dialogue at this node.
@@ -44,8 +17,24 @@ namespace GAD375.Prototyper
         }
         public virtual void StartDialogue(string node)
         {
-            // Kick off the dialogue at this node.
-            FindObjectOfType<DialogueRunner>().StartDialogue(node);
+            DialogueRunner r = FindObjectOfType<DialogueRunner>();
+            if (r != null)
+            {
+                if (r.IsDialogueRunning)
+                {
+                    //If dialogue is already running, advance it.
+                    LineView l = FindObjectOfType<LineView>();
+                    if (l != null)
+                    {
+                        l.OnContinueClicked();
+                    }
+                }
+                else
+                {
+                    // Kick off the dialogue at this node.
+                    r.StartDialogue(node);
+                }
+            }
         }
     }
 }
